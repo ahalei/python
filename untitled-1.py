@@ -12,10 +12,22 @@ def hello():
 '''
 from Tkinter import * #在不使用模块名字的情况下使用模块的内容
 import time
+class Ball:
+    def __init__(self,canvas, color):
+        self.canvas = canvas
+        self.color = color
+        self.id = canvas.create_oval(10,10,25,25,fill=color)
+        self.canvas.move(self.id,245,100)
+        
+    def draw(self):
+        self.canvas.move(self.id,-1,0)
+#pass 不做任何事情，一般用做占位语句
 
 
 def move(Event):
     canvas.move(1,-5,0)#第一个参数是需要移动的对象编号，横移5个px，纵移0个px
+    
+    
 
 tk = Tk() #tk对象创建了一个基本的窗口。我们可以在上面增加其他东西，例如按钮，输入框、或者用来画图的画布
 tk.title="aha game"
@@ -32,13 +44,19 @@ for x in range(10) :
     time.sleep(0.05)
 
 canvas.bind_all('<KeyPress-Return>',move) #第一个参数告诉Tkinter需要监听什么事件，此处需要监听的事件名称叫做KeyPress-Return
+ball =  Ball(canvas, 'red')
+
+
+
+while(1>0):
+    ball.draw()
+    tk.update_idletasks
+    tk.update()
+    time.sleep(0.01)
 
 tk.mainloop()
 
 
-class Ball:
-    def __init__(self,canvas, color):
-        self.canvas = canvas
-        self.color = color
-#pass 不做任何事情，一般用做占位语句
+
+
 
